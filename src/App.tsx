@@ -1,6 +1,14 @@
+import { useState } from "react";
+import Key from "./components/KeyBox/Key";
 
 const App = () => {
-  return <main></main>
-}
+	const [user, setUser] = useState("Andrzej");
 
-export default App
+	return (
+		<main>
+			<Key name="202" owner={user} onClick={() => setUser("")} />
+		</main>
+	);
+};
+
+export default App;
