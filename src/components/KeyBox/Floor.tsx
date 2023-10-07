@@ -13,7 +13,7 @@ export const Floor = ({ name, keys }: Props) => {
 			<div>{name}</div>
 			<div>
 				{keys.map((key) => (
-					<Key key={key.id} {...key} />
+					<Key key={key.name} {...key} />
 				))}
 			</div>
 		</div>
