@@ -1,25 +1,12 @@
 import { type Key } from "../../types/models";
 import { Floor } from "./Floor";
 import useKeys from "../../hooks/useKeys";
-import { useEffect } from "react";
 
 const getFloorKeys = (keys: Key[], floor: number) =>
 	keys.filter((key) => key.floor === floor);
 
 const KeyBox = () => {
-	const { keys, setKeys } = useKeys();
-
-	useEffect(() => {
-		setKeys([
-			{
-				floor: 1,
-				name: "234",
-				owner: 2,
-			},
-		]);
-	}, []);
-
-	console.log(keys);
+	const { keys } = useKeys();
 
 	return (
 		<section>
