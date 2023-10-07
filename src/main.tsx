@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store";
-import WebSocketProvider from "./components/core/WebSocketProvider.tsx";
+import WebSocketProvider from "./components/Providers/WebSocketProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<Provider store={store}>
