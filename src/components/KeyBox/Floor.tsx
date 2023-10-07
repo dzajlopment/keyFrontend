@@ -5,6 +5,8 @@ export type Props = {
 	keys: KeyProps[];
 };
 
+// TODO: Style this component
+
 const Floor = ({ name, keys }: Props) => {
 	return (
 		<div>
