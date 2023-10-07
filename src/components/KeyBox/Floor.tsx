@@ -1,4 +1,4 @@
-import Key, { Props as KeyProps } from "./Key";
+import Key, { type KeyProps } from "./Key";
 
 export type Props = {
 	name: string;

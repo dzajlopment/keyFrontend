@@ -1,31 +1,18 @@
-import { useState, useEffect } from "react";
 import { cn } from "../../utils/tailwind";
 
-export type Props = {
+export interface KeyProps extends React.HTMLAttributes<HTMLButtonElement> {
 	id: string;
 	owner: string | null;
-	onClick?: () => void;
-};
+	className?: string;
+}
 
-const basicStyle = "rounded";
-
-const Key = ({ id, owner, onClick }: Props) => {
-	const [isEnabled, setIsEnabled] = useState(false);
-
-	useEffect(() => {
-		setIsEnabled(!!owner);
-	}, [owner]);
-
-	const clickHandler = () => {
-		if (onClick) {
-			onClick();
-		}
-	};
+const Key = ({ id, owner, className, ...props }: KeyProps) => {
+	const isEnabled = !!owner; // Detect if there is a owner
 
 	return (
 		<button
-			onClick={clickHandler}
-			className={cn(basicStyle, isEnabled ? "bg-green-500" : "bg-red-500")}>
+			className={cn("key", isEnabled ? "key-enabled" : "key-disabled", className)} //TODO: Style button and its variations.
+			{...props}>
 			{id}
 		</button>
 	);
