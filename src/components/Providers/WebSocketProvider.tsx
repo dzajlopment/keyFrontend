@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useKeys from "../../hooks/useKeys";
 import {
@@ -53,6 +53,7 @@ const WebSocketProvider = ({ url, children }: Props) => {
 				ws.close();
 			}
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [url]);
 
 	return <>{children}</>;
