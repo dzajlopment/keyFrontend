@@ -1,4 +1,4 @@
-import { type Key } from "../../types/Key";
+import { type Key } from "../../types/models";
 import { Floor } from "./Floor";
 
 //* Just for testing

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Key } from "../../types/Key";
+import { Key } from "../../types/models";
 
 export const keySlice = createSlice({
 	name: "key",
