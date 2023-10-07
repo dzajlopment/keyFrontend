@@ -1,4 +1,4 @@
-import { Key as KeyModel } from "../../types/Key";
+import { type Key as KeyModel } from "../../types/Key";
 import { cn } from "../../utils/tailwind";
 
 export interface KeyProps
