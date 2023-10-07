@@ -7,25 +7,28 @@ export const keySlice = createSlice({
 	reducers: {
 		set: (state, { payload }) => {
 			state = payload;
+			return state;
 		},
 		borrow: (state, { payload }) => {
-			const key = state.find((key) => key.name === payload.name);
+			const key = state.map((key) => {
+				if (key.name === payload.name) {
+					key.owner = payload.teacherId;
+				}
+				return key;
+			});
 
-			if (!key) {
-				throw new Error(`Key ${payload.name} not found!`);
-			}
-
-			key.owner = payload.teacherId;
+			return key;
 		},
 
 		returnKey: (state, { payload }) => {
-			const key = state.find((key) => key.name === payload.name);
+			const key = state.map((key) => {
+				if (key.name === payload.name) {
+					key.owner = null;
+				}
+				return key;
+			});
 
-			if (!key) {
-				throw new Error(`Key ${payload.name} not found!`);
-			}
-
-			key.owner = null;
+			return key;
 		},
 	},
 });
