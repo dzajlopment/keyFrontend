@@ -1,5 +1,11 @@
+import KeyBox from "./components/KeyBox";
+
 const App = () => {
-	return <main></main>;
+	return (
+		<main>
+			<KeyBox />
+		</main>
+	);
 };
 
 export default App;
