@@ -6,7 +6,7 @@ const App = () => {
 
 	return (
 		<main>
-			<Key name="202" owner={user} onClick={() => setUser("")} />
+			<Key id="202" owner={user} onClick={() => setUser("")} />
 		</main>
 	);
 };

@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { cn } from "../../utils/tailwind";
 
 export type Props = {
-	name: string;
+	id: string;
 	owner: string | null;
 	onClick?: () => void;
 };
 
 const basicStyle = "rounded";
 
-const Key = ({ name, owner, onClick }: Props) => {
+const Key = ({ id, owner, onClick }: Props) => {
 	const [isEnabled, setIsEnabled] = useState(false);
 
 	useEffect(() => {
@@ -26,7 +26,7 @@ const Key = ({ name, owner, onClick }: Props) => {
 		<button
 			onClick={clickHandler}
 			className={cn(basicStyle, isEnabled ? "bg-green-500" : "bg-red-500")}>
-			{name}
+			{id}
 		</button>
 	);
 };
