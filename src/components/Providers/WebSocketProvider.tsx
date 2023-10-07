@@ -53,7 +53,7 @@ const WebSocketProvider = ({ url, children }: Props) => {
 				ws.close();
 			}
 		};
-	}, [url, dispatch]);
+	}, [url]);
 
 	return <>{children}</>;
 };
