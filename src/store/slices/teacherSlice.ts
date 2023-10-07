@@ -5,8 +5,8 @@ export const teacherSlice = createSlice({
 	name: "teacher",
 	initialState: [] as Teacher[],
 	reducers: {
-		set: (state, { payload }) => {
-			state = payload;
+		set: (_, { payload }) => {
+			return payload;
 		},
 	},
 });

@@ -5,9 +5,8 @@ export const keySlice = createSlice({
 	name: "key",
 	initialState: [] as Key[],
 	reducers: {
-		set: (state, { payload }) => {
-			state = payload;
-			return state;
+		set: (_, { payload }) => {
+			return payload;
 		},
 		borrow: (state, { payload }) => {
 			const key = state.map((key) => {
