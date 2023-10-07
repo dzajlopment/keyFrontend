@@ -1,15 +1,12 @@
 import { type Key } from "../../types/models";
 import { Floor } from "./Floor";
-
-//* Just for testing
-import DUMMY_DATA from "../../assets/DUMMY_DATA.json";
+import useKeys from "../../hooks/useKeys";
 
 const getFloorKeys = (keys: Key[], floor: number) =>
 	keys.filter((key) => key.floor === floor);
 
 const KeyBox = () => {
-	//TODO: Get data about keys from state or reducer and render.
-	const keys = DUMMY_DATA.keys;
+	const { keys } = useKeys();
 
 	return (
 		<section>
