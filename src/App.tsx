@@ -1,11 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./components/Layout/RootLayout";
+import KeyBox from "./components/KeyBox";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <RootLayout />,
-		children: [{ path: "/key/:keyName", element: <div>XD</div> }],
+		element: <KeyBox />,
+	},
+	{
+		path: "/history",
+		element: <div>history</div>,
 	},
 ]);
 
