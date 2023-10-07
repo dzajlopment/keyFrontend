@@ -18,8 +18,6 @@ export const keySlice = createSlice({
 			key.owner = payload.teacherId;
 		},
 
-		//? return is a reserved keyword and i can't
-
 		returnKey: (state, { payload }) => {
 			const key = state.find((key) => key.name === payload.name);
 
