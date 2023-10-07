@@ -6,7 +6,7 @@ export interface KeyProps extends React.HTMLAttributes<HTMLButtonElement> {
 	className?: string;
 }
 
-const Key = ({ id, owner, className, ...props }: KeyProps) => {
+export const Key = ({ id, owner, className, ...props }: KeyProps) => {
 	const isEnabled = !!owner; // Detect if there is a owner
 
 	return (
@@ -17,5 +17,3 @@ const Key = ({ id, owner, className, ...props }: KeyProps) => {
 		</button>
 	);
 };
-
-export default Key;

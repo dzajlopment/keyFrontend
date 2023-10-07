@@ -1,4 +1,4 @@
-import Key, { type KeyProps } from "./Key";
+import { Key, type KeyProps } from "./Key";
 
 export type Props = {
 	name: string;
@@ -7,7 +7,7 @@ export type Props = {
 
 // TODO: Style this component
 
-const Floor = ({ name, keys }: Props) => {
+export const Floor = ({ name, keys }: Props) => {
 	return (
 		<div>
 			<div>{name}</div>
@@ -19,5 +19,3 @@ const Floor = ({ name, keys }: Props) => {
 		</div>
 	);
 };
-
-export default Floor;

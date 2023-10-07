@@ -1,0 +1,16 @@
+{
+	"keys": [
+		{ "name": "001", "floor": 0, "takenBy": "Grzegorz Gadaj" },
+		{ "name": "002", "floor": 0, "takenBy": "Damian Stelmach" },
+		{ "name": "101", "floor": 1, "takenBy": "Andrzej Konieczny" },
+		{ "name": "102", "floor": 1, "takenBy": null },
+		{ "name": "201", "floor": 2, "takenBy": null },
+		{ "name": "202", "floor": 2, "takenBy": "Sylwia Gruszka" }
+	],
+	"teachers": [
+		{ "name": "Grzegorz Gadaj", "id": 1 },
+		{ "name": "Damian Stelmach", "id": 2 },
+		{ "name": "Andrzej Konieczny", "id": 3 },
+		{ "name": "Sylwia Gruszka", "id": 4 }
+	]
+}
