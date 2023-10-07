@@ -4,12 +4,11 @@ const websocketSlice = createSlice({
 	name: "websocket",
 	initialState: null,
 	reducers: {
-		setWebSocket: (state, { payload }) => {
-			state = payload;
+		setWebSocket: (_, { payload }) => {
+			return payload;
 		},
-		clearWebSocket: (state) => {
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			state = null;
+		clearWebSocket: () => {
+			return null;
 		},
 	},
 });
