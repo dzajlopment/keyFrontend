@@ -8,6 +8,7 @@
 @layer utilities {
 }
 
+/*TODO: Potem te style tutaj przeniosę do komponentów ale akurat kopiowałem to XD */
 @layer components {
 	.modal {
 		@apply bg-slate-300 pb-6 rounded-3xl fixed;
