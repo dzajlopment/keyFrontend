@@ -11,6 +11,8 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 	const isEnabled = !!owner; // Detect if there is a owner
 	const [isOpen, setIsOpen] = useState(false);
 
+	//* To całe name będzie faktycnzie kiedyś imieniem i nazwiskiem nauczyciela ale tera to jest numer
+
 	return (
 		<>
 			{isOpen && (
