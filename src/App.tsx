@@ -8,6 +8,8 @@ import useKeys from "./hooks/useKeys";
 import DUMMY_DATA from "./assets/DUMMY_DATA.json";
 import { useEffect } from "react";
 
+// import { fetchData } from "./utils/connection";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -25,6 +27,13 @@ const App = () => {
 	const { setKeys } = useKeys();
 
 	useEffect(() => {
+		//* For future
+
+		// fetchData("example").then((data) => {
+		// 	setKeys(data.body.keys);
+		// 	setTeachers(data.body.teachers);
+		// });
+
 		setTeachers(DUMMY_DATA.teachers);
 		setKeys(DUMMY_DATA.keys);
 	}, []);
