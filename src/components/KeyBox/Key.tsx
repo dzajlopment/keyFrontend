@@ -2,6 +2,8 @@ import { useState } from "react";
 import { type Key as KeyModel } from "../../types/models";
 import { cn } from "../../utils/tailwind";
 import Modal from "../UI/Modal";
+import FreeView from "./Modal/FreeView";
+import OccupiedView from "./Modal/OccupiedView";
 
 export interface KeyProps
 	extends React.HTMLAttributes<HTMLButtonElement>,
@@ -17,8 +19,8 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 		<>
 			{isOpen && (
 				<Modal
-					title="Filtr"
-					children={<div>XD</div>}
+					title="Szczegóły"
+					children={isEnabled ? <FreeView /> : <OccupiedView />}
 					onClick={() => {
 						setIsOpen(false);
 					}}
