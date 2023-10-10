@@ -22,14 +22,13 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 				<Modal
 					title="Szczegóły"
 					children={isEnabled ? <FreeView /> : <OccupiedView />}
-					onClick={() => {
-						setIsOpen(false);
-					}}
+					isOpen={isOpen}
+					setIsOpen={setIsOpen}
 				/>
 			)}
 			<TERipple rippleColor="light">
 				<button
-					// onClick={() => setIsOpen(true)}
+					onClick={() => setIsOpen(true)}
 					className={cn(
 						"key w-full",
 						isEnabled ? "key-free" : "key-occupied",
