@@ -12,9 +12,7 @@
 	}
 
 	body {
-		@apply bg-slate-50 text-gray-900 h-full;
-		font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-			"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+		@apply bg-slate-50 text-gray-900 h-full font-[Roboto] m-0 p-0;
 	}
 
 	::-webkit-scrollbar {
@@ -42,7 +40,7 @@
 	}
 
 	.auto-fit-grid {
-		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 11rem));
 	}
 }
 
