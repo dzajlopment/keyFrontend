@@ -40,6 +40,10 @@
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
 	}
+
+	.auto-fit-grid {
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	}
 }
 
 @layer components {
