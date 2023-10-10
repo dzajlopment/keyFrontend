@@ -4,6 +4,7 @@ import { cn } from "../../utils/tailwind";
 import Modal from "../UI/Modal";
 import FreeView from "./Modal/FreeView";
 import OccupiedView from "./Modal/OccupiedView";
+import { TERipple } from "tw-elements-react";
 
 export interface KeyProps
 	extends React.HTMLAttributes<HTMLButtonElement>,
@@ -21,17 +22,22 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 				<Modal
 					title="Szczegóły"
 					children={isEnabled ? <FreeView /> : <OccupiedView />}
-					onClick={() => {
-						setIsOpen(false);
-					}}
+					isOpen={isOpen}
+					setIsOpen={setIsOpen}
 				/>
 			)}
-			<button
-				onClick={() => setIsOpen(true)}
-				className={cn("key", isEnabled ? "key-free" : "key-occupied", className)} //TODO: Style button and its variations.
-				{...props}>
-				{name}
-			</button>
+			<TERipple rippleColor="light">
+				<button
+					onClick={() => setIsOpen(true)}
+					className={cn(
+						"key w-full",
+						isEnabled ? "key-free" : "key-occupied",
+						className
+					)}
+					{...props}>
+					{name}
+				</button>
+			</TERipple>
 		</>
 	);
 };

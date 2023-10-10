@@ -5,17 +5,15 @@ export type Props = {
 	keys: KeyProps[];
 };
 
-// TODO: Style this component
-
 export const Floor = ({ name, keys }: Props) => {
 	return (
-		<div className="bg-purple-600 rounded-xl p-5 border-2 border-white">
-			<div className="text-center text-2xl text-white font-bold italic mb-5">
+		<div className="rounded-xl p-5">
+			<div className="text-3xl font-medium text-slate-800 tracking-tight ">
 				{name}
 			</div>
-			<div className="grid gap-3 sm:gap-5 lg:gap-8 xl:gap-12 grid-cols-4 sm:grid-cols-6 lg:grid-cols-8">
+			<div className="grid mt-5 gap-5 auto-fit-grid ">
 				{keys.map((key) => (
-					<Key key={key.name} {...key} />
+					<Key key={key.name} {...key} className="aspect-[4/3]" />
 				))}
 			</div>
 		</div>

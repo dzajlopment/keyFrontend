@@ -3,43 +3,61 @@
 @tailwind utilities;
 
 @layer base {
+	* {
+		@apply m-0 p-0 box-border;
+	}
+
+	html {
+		@apply h-full;
+	}
+
 	body {
-		@apply bg-slate-50 text-slate-900;
+		@apply bg-slate-50 text-gray-900 h-full font-[Roboto] m-0 p-0;
+	}
+
+	#root {
+		@apply h-full;
+	}
+
+	::-webkit-scrollbar {
+		@apply h-2 w-2;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply rounded-md bg-slate-300;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-slate-400;
 	}
 }
 
 @layer utilities {
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	.auto-fit-grid {
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 8rem));
+	}
 }
 
 @layer components {
 	.key {
-		@apply border rounded py-3 font-semibold transition-all duration-200 ease-in-out
-		hover:scale-105
+		@apply rounded-xl font-semibold transition-all duration-200 ease-in-out
+		hover:scale-105 text-white text-2xl bg-opacity-95 shadow-md select-none;
 	}
 	.key-free {
-		@apply bg-green-500 text-white border-white 
+		@apply bg-green-500 text-green-100 bg-opacity-95;
 	}
 
 	.key-occupied {
-		@apply bg-red-700 border-black 
+		@apply bg-red-500 text-red-100;
 	}
-}
-
-@keyframes zoom-in {
-	0% {
-		transform: scale(0.8, 0.8);
-		opacity: 0.5;
-	}
-	100% {
-		transform: scale(1, 1);
-		opacity: 1;
-	}
-}
-
-body {
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.test {
-	animation: zoom-in 0.1s ease;
 }
