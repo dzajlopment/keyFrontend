@@ -13,7 +13,7 @@
 
 @layer components {
 	.key {
-		@apply border rounded py-3 font-semibold
+		@apply border rounded py-3 font-semibold transition-all duration-200 ease-in-out
 		hover:scale-105
 	}
 	.key-free {
