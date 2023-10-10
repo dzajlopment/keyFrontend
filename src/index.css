@@ -12,6 +12,17 @@
 }
 
 @layer components {
+	.key {
+		@apply border rounded py-3 font-semibold
+		hover:scale-105
+	}
+	.key-free {
+		@apply bg-green-500 text-white border-white 
+	}
+
+	.key-occupied {
+		@apply bg-red-700 border-black 
+	}
 }
 
 @keyframes zoom-in {
@@ -23,6 +34,10 @@
 		transform: scale(1, 1);
 		opacity: 1;
 	}
+}
+
+body {
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .test {
