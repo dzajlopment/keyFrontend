@@ -15,6 +15,10 @@
 		@apply bg-slate-50 text-gray-900 h-full font-[Roboto] m-0 p-0;
 	}
 
+	#root {
+		@apply h-full;
+	}
+
 	::-webkit-scrollbar {
 		@apply h-2 w-2;
 	}
@@ -40,20 +44,20 @@
 	}
 
 	.auto-fit-grid {
-		grid-template-columns: repeat(auto-fit, minmax(5rem, 11rem));
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 8rem));
 	}
 }
 
 @layer components {
 	.key {
-		@apply border rounded py-3 font-semibold transition-all duration-200 ease-in-out
-		hover:scale-105;
+		@apply rounded-xl font-semibold transition-all duration-200 ease-in-out
+		hover:scale-105 text-white text-2xl bg-opacity-95 shadow-md select-none;
 	}
 	.key-free {
-		@apply bg-green-500 text-white border-white;
+		@apply bg-green-500 text-green-100 bg-opacity-95;
 	}
 
 	.key-occupied {
-		@apply bg-red-700 border-black;
+		@apply bg-red-500 text-red-100;
 	}
 }
