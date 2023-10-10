@@ -3,8 +3,22 @@
 @tailwind utilities;
 
 @layer base {
+	* {
+		@apply m-0 p-0 box-border;
+	}
+
+	html {
+		@apply h-full;
+	}
+
 	body {
-		@apply bg-slate-50 text-slate-900;
+		@apply bg-slate-50 text-gray-900 h-full;
+		font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+			"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	}
+
+	#root {
+		@apply h-full;
 	}
 }
 
@@ -14,32 +28,13 @@
 @layer components {
 	.key {
 		@apply border rounded py-3 font-semibold transition-all duration-200 ease-in-out
-		hover:scale-105
+		hover:scale-105;
 	}
 	.key-free {
-		@apply bg-green-500 text-white border-white 
+		@apply bg-green-500 text-white border-white;
 	}
 
 	.key-occupied {
-		@apply bg-red-700 border-black 
+		@apply bg-red-700 border-black;
 	}
-}
-
-@keyframes zoom-in {
-	0% {
-		transform: scale(0.8, 0.8);
-		opacity: 0.5;
-	}
-	100% {
-		transform: scale(1, 1);
-		opacity: 1;
-	}
-}
-
-body {
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.test {
-	animation: zoom-in 0.1s ease;
 }
