@@ -9,7 +9,7 @@ const KeyBox = () => {
 	const { keys } = useKeys();
 
 	return (
-		<section className="relative bg-slate-50  h-full select-none">
+		<section className="relative bg-slate-50  h-full select-none overflow-auto">
 			<div
 				style={{
 					backgroundPosition: "10px 10px",

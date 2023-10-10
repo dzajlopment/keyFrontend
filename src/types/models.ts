@@ -1,6 +1,6 @@
 export type Key = {
 	name: string;
-	owner: number | null;
+	owner: string | null;
 	floor: number;
 };
 

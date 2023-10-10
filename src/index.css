@@ -44,7 +44,7 @@
 	}
 
 	.auto-fit-grid {
-		grid-template-columns: repeat(auto-fit, minmax(5rem, 7.5rem));
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 10rem));
 	}
 }
 
@@ -58,6 +58,6 @@
 	}
 
 	.key-occupied {
-		@apply bg-red-500 text-red-100;
+		@apply bg-red-500 text-red-100 flex flex-col items-center justify-center gap-0.5;
 	}
 }

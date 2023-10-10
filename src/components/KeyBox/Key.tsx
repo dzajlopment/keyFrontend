@@ -11,7 +11,7 @@ export interface KeyProps
 		KeyModel {}
 
 export const Key = ({ name, owner, className, ...props }: KeyProps) => {
-	const isEnabled = !!owner; // Detect if there is a owner
+	const isEnabled = !owner; // Detect if there is a owner
 	const [isOpen, setIsOpen] = useState(false);
 
 	//* To całe name będzie faktycnzie kiedyś imieniem i nazwiskiem nauczyciela ale tera to jest numer
@@ -35,7 +35,7 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 						className
 					)}
 					{...props}>
-					{name}
+					{name} {!isEnabled && <span className="text-base">{owner}</span>}
 				</button>
 			</TERipple>
 		</>

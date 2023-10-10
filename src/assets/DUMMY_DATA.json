@@ -1,12 +1,12 @@
 {
 	"keys": [
-		{ "name": "001", "floor": 0, "owner": 1 },
-		{ "name": "002", "floor": 0, "owner": 2 },
-		{ "name": "101", "floor": 1, "owner": 3 },
+		{ "name": "001", "floor": 0, "owner": "Damian Stelmach" },
+		{ "name": "002", "floor": 0, "owner": "Grzegorz Gadaj" },
+		{ "name": "101", "floor": 1, "owner": "Andrzej Konieczny" },
 		{ "name": "102", "floor": 1, "owner": null },
 		{ "name": "201", "floor": 2, "owner": null },
-		{ "name": "202", "floor": 2, "owner": 4 },
-		{ "name": "302", "floor": 3, "owner": 5 }
+		{ "name": "202", "floor": 2, "owner": "Sylwia Gruszka" },
+		{ "name": "302", "floor": 3, "owner": "Joanna Gawlik" }
 	],
 	"teachers": [
 		{ "name": "Grzegorz Gadaj", "id": 1 },
