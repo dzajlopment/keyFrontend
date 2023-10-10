@@ -16,8 +16,8 @@ type Props = {
 };
 
 const Modal = ({ setIsOpen, isOpen, title, children }: Props) => (
-	<TEModal show={isOpen} setShow={setIsOpen}>
-		<TEModalDialog>
+	<TEModal show={isOpen} setShow={setIsOpen} scrollable>
+		<TEModalDialog centered>
 			<TEModalContent>
 				<TEModalHeader>
 					{/* <!--Modal title--> */}
