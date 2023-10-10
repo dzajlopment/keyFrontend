@@ -17,12 +17,29 @@
 			"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 	}
 
-	#root {
-		@apply h-full;
+	::-webkit-scrollbar {
+		@apply h-2 w-2;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply rounded-md bg-slate-300;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-slate-400;
 	}
 }
 
 @layer utilities {
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
 }
 
 @layer components {
