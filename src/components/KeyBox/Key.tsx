@@ -28,7 +28,7 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 			)}
 			<button
 				onClick={() => setIsOpen(true)}
-				className={cn("key", isEnabled ? "key-enabled" : "key-disabled", className)} //TODO: Style button and its variations.
+				className={cn("key", isEnabled ? "key-free" : "key-occupied", className)} //TODO: Style button and its variations.
 				{...props}>
 				{name}
 			</button>
