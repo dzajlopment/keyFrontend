@@ -44,7 +44,7 @@
 	}
 
 	.auto-fit-grid {
-		grid-template-columns: repeat(auto-fit, minmax(5rem, 8rem));
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 7.5rem));
 	}
 }
 

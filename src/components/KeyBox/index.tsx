@@ -14,7 +14,7 @@ const KeyBox = () => {
 				style={{
 					backgroundPosition: "10px 10px",
 				}}
-				className="absolute h-full inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"></div>
+				className="absolute h-full inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.7))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"></div>
 			<div className="relative rounded-xl overflow-auto">
 				<div className="flex flex-col gap-3 m-6">
 					<Floor name="Piwnica / Parter" keys={getFloorKeys(keys, 0)} />
