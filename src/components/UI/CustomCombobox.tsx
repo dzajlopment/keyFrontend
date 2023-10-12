@@ -2,7 +2,6 @@ import { Command } from "cmdk";
 import { useState } from "react";
 
 const CustomCombobox = ({ items }: { items: JSX.Element[] }) => {
-
   return (
     <Command>
       <div cmdk-input-wrapper="">

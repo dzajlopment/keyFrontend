@@ -5,6 +5,7 @@ import { Teacher } from "../../../types/models";
 import CustomSelect from "../../UI/CustomCombobox";
 import * as Select from '@radix-ui/react-select';
 import { Command } from "cmdk";
+import CustomCombobox from "../../UI/CustomCombobox";
 
 
 const FreeView = () => {
@@ -32,7 +33,7 @@ const FreeView = () => {
 	})
 
 	return <div>
-		<CustomSelect items={items} />
+		<CustomCombobox items={items} />
 	</div>;
 };
 
