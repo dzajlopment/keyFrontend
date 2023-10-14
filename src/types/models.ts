@@ -8,3 +8,8 @@ export type Teacher = {
 	id: number;
 	name: string;
 };
+
+export type Room = {
+	id: string;
+	name: string;
+};
