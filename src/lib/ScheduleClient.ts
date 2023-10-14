@@ -24,8 +24,8 @@ export class ScheduleClient {
 	}
 
 	private async getData(url: string) {
-		const corseUrl = "https://cors-anywhere.herokuapp.com/";
-		const fullUrl = corseUrl + url;
+		const corsUrl = "https://cors-anywhere.herokuapp.com/";
+		const fullUrl = corsUrl + url;
 		const html = await axios.get(fullUrl).then((response) => response.data);
 		return html;
 	}
