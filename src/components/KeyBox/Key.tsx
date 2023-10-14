@@ -21,7 +21,9 @@ export const Key = ({ name, owner, className, ...props }: KeyProps) => {
 			{isOpen && (
 				<Modal
 					title="Szczegóły"
-					children={isEnabled ? <FreeView /> : <OccupiedView />}
+					children={
+						isEnabled ? <FreeView keyName={name} /> : <OccupiedView keyName={name} />
+					}
 					isOpen={isOpen}
 					setIsOpen={setIsOpen}
 				/>

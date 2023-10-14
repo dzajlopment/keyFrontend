@@ -4,14 +4,23 @@ import useTeachers from "../../../hooks/useTeachers";
 import { Teacher } from "../../../types/models";
 import { Command } from "cmdk";
 import CustomCombobox from "../../UI/CustomCombobox";
+import { schedule } from "../../../lib/ScheduleClient";
 
-const FreeView = () => {
+type Props = {
+	keyName: string;
+};
+
+const FreeView = ({ keyName }: Props) => {
 	const { teachers } = useTeachers();
 
 	const [value, setValue] = useState<Teacher>({
 		id: 0,
 		name: "",
 	});
+
+	const room = schedule.getRooms()?.find((room) => room.name === keyName);
+
+	console.log(room);
 
 	const items = teachers.map((teacher: Teacher) => {
 		return (

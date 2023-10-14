@@ -7,7 +7,7 @@ import useKeys from "./hooks/useKeys";
 //* Only for testing
 import DUMMY_DATA from "./assets/DUMMY_DATA.json";
 import { useEffect } from "react";
-import ScheduleClient from "./lib/ScheduleClient";
+import { schedule } from "./lib/ScheduleClient";
 
 const router = createBrowserRouter([
 	{
@@ -20,8 +20,6 @@ const router = createBrowserRouter([
 	},
 ]);
 
-const client = new ScheduleClient();
-client.syncRooms();
 const App = () => {
 	//* Only for testing
 	const { setTeachers } = useTeachers();
@@ -34,6 +32,8 @@ const App = () => {
 		// 	setKeys(data.body.keys);
 		// 	setTeachers(data.body.teachers);
 		// });
+
+		schedule.syncRooms();
 
 		setTeachers(DUMMY_DATA.teachers);
 		setKeys(DUMMY_DATA.keys);

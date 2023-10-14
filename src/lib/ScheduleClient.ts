@@ -7,7 +7,7 @@ import {
 	type TableHour,
 } from "@wulkanowy/timetable-parser";
 
-export default class ScheduleClient {
+export class ScheduleClient {
 	private static instance: ScheduleClient;
 	private rooms: Room[] | null = null;
 
@@ -84,3 +84,5 @@ export default class ScheduleClient {
 		return this.transformSchedule(day, hours);
 	}
 }
+
+export const schedule = ScheduleClient.getInstance();
