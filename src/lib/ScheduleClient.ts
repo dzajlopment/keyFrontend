@@ -71,6 +71,10 @@ export class ScheduleClient {
 	}
 
 	async getRoomDaySchedule(id: string, weekDay: number) {
+		if (weekDay === 6 || weekDay === 7) {
+			return null;
+		}
+
 		const html = await this.getData(
 			`https://www.zsti.gliwice.pl/plan/plany/s${id}.html`
 		);
@@ -82,6 +86,13 @@ export class ScheduleClient {
 		const day = schedule[weekDay];
 
 		return this.transformSchedule(day, hours);
+	}
+
+	async getTodaysRoomSchedule(id: string) {
+		const date = new Date();
+		const weekDay = date.getDay();
+
+		return await this.getRoomDaySchedule(id, weekDay);
 	}
 }
 
