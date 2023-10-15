@@ -3,7 +3,7 @@ import { useState } from "react";
 import useTeachers from "../../../hooks/useTeachers";
 import { Teacher } from "../../../types/models";
 import { Command } from "cmdk";
-import CustomCombobox from "../../UI/CustomCombobox";
+import CustomCombobox from "../../UI/TeacherCombobox";
 import { schedule } from "../../../lib/ScheduleClient";
 
 type Props = {
