@@ -71,6 +71,11 @@ export class ScheduleClient {
 	}
 
 	async getRoomDaySchedule(id: string, weekDay: number) {
+
+		function normalizeTime(timeString: string) {
+			return `${(Number(timeString.split(":")[0]) < 10 ? '0' : '') + timeString.split(":")[0]}:${timeString.split(":")[1]}`
+		}
+
 		if (weekDay === 6 || weekDay === 7) {
 			return null;
 		}
@@ -82,6 +87,14 @@ export class ScheduleClient {
 
 		const schedule = table.getDays();
 		const hours = table.getHours();
+
+		Object.keys(hours).forEach((index: string) => {
+			hours[index as unknown as number].timeFrom = normalizeTime(hours[index as unknown as number].timeFrom)
+			hours[index as unknown as number].timeTo = normalizeTime(hours[index as unknown as number].timeTo)
+		})
+		
+		console.log(hours);
+		
 
 		const day = schedule[weekDay - 1];
 		console.log(schedule);
@@ -98,7 +111,6 @@ export class ScheduleClient {
 
 	async getLessonHint(roomId: string): Promise<LessonHint> {
 		let todaysLessons = await this.getRoomDaySchedule(roomId, new Date().getDay())
-		
 		if (!todaysLessons) {
 			return {
 				message: "no_lessons_today"
@@ -112,10 +124,11 @@ export class ScheduleClient {
 				}
 			}
 
-			const nowTime = `${new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
+			const nowTime = `${(new Date().getHours() < 10 ? '0' : '') + new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
 			
-
 			if (todaysLessons.length === 1) {
+				
+				
 				if (nowTime < todaysLessons[0].timeFrom) {
 					return {
 						message: "next_lesson",
@@ -151,17 +164,7 @@ export class ScheduleClient {
 						}
 					} else {
 						if (nowTime > todaysLessons[i].timeFrom && nowTime < todaysLessons[i + 1].timeTo) {
-							if (nowTime > todaysLessons[i + 1].timeFrom) {
-								return {
-									message: "current_lesson",
-									currentLesson: {
-										teacher: todaysLessons[i + 1].teacherId as string,
-										timeFrom: todaysLessons[i + 1].timeFrom,
-										timeTo: todaysLessons[i + 1].timeTo
-									}
-								}
-							} 
-							if (nowTime > todaysLessons[i].timeTo) {
+							if (nowTime > todaysLessons[i].timeTo && nowTime < todaysLessons[i + 1].timeFrom ) {
 								return {
 									message: "next_lesson",
 									nextLesson: {
@@ -191,7 +194,6 @@ export class ScheduleClient {
 				}
 			}
 			
-
 			const res: LessonHint = {
 				message: "no_lessons_today"
 			}
