@@ -17,10 +17,18 @@ const FreeView = ({ keyName }: Props) => {
 		id: 0,
 		name: "",
 	});
+	
+	async function getLessonHint() {
+		const room = schedule.getRooms()?.find((room) => room.name === keyName);
+		console.log(schedule.getRooms());
+		
+		if (room) {
+			const lessonHint = await schedule.getLessonHint(room.id);
+			console.log(lessonHint);
+		}
+	}
 
-	const room = schedule.getRooms()?.find((room) => room.name === keyName);
-
-	console.log(room);
+	getLessonHint()
 
 	const items = teachers.map((teacher: Teacher) => {
 		return (

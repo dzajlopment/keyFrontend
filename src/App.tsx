@@ -34,7 +34,7 @@ const App = () => {
 		// });
 
 		schedule.syncRooms();
-
+		
 		setTeachers(DUMMY_DATA.teachers);
 		setKeys(DUMMY_DATA.keys);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
