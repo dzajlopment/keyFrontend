@@ -106,17 +106,15 @@ export class ScheduleClient {
 	}
 
 	async getLessonHint(roomId: string): Promise<LessonHint> {
-		let todaysLessons = await this.getRoomDaySchedule(roomId, 1)
-		console.log(todaysLessons);
+		let todaysLessons = await this.getRoomDaySchedule(roomId, new Date().getDay())
+		// let todaysLessons = await this.getRoomDaySchedule(roomId, 2) to test
 		
-		// new Date().getDay()
 		if (!todaysLessons) {
 			return {
 				message: "no_lessons_today"
 			}
 		} else {
 			todaysLessons = todaysLessons?.filter((lesson: TableLesson) => lesson.subject)
-			console.log(todaysLessons);
 			
 			if (!todaysLessons) {
 				return {
@@ -124,8 +122,8 @@ export class ScheduleClient {
 				}
 			}
 
-			// const nowTime = `${(new Date().getHours() < 10 ? '0' : '') + new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
-			const nowTime = "08:30"
+			const nowTime = `${(new Date().getHours() < 10 ? '0' : '') + new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
+			// const nowTime = "08:30" to test
 			if (todaysLessons.length === 1) {
 				if (nowTime < todaysLessons[0].timeFrom) {
 					return {
