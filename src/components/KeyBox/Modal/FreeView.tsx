@@ -22,9 +22,10 @@ const FreeView = ({ keyName }: Props) => {
 
 	async function getLessonHint() {
 		const room = schedule.getRooms()?.find((room) => room.name === keyName);
-		console.log(schedule.getRooms());
 		
 		if (room) {
+			console.log(await schedule.getLessonHint(room.id));
+			
 			setLessonHint(await schedule.getLessonHint(room.id))
 		}
 	}
@@ -52,22 +53,22 @@ const FreeView = ({ keyName }: Props) => {
 	});
 
 	return (
-		<div className="flex">
+		<div className="flex flex-col md:flex-row gap-5">
 			<CustomCombobox items={items} />
-			<div>
+			<div className="flex flex-col gap-6">
 				{ lessonHint?.message === "no_more_lessons_today" ? (
 					<p>
 						Nie ma dzisiaj więcej lekcji tutaj
 					</p>
 				) : (null)}
-				{ lessonHint?.message === "no_lessons_todayy" ? (
+				{ lessonHint?.message === "no_lessons_today" ? (
 					<p>
 						Nie ma dzisiaj lekcji tutaj
 					</p>
 				) : (null)}
 				{ lessonHint?.message === "next_lesson" || lessonHint?.message === "current_next_lesson" ? (
 					<div>
-						<p>
+						<p className="font-bold text-xl mb-2">
 							Następna lekcja
 						</p>
 						<p>
@@ -80,7 +81,7 @@ const FreeView = ({ keyName }: Props) => {
 				) : (null)}
 				{ lessonHint?.message === "current_lesson" || lessonHint?.message === "current_next_lesson" ? (
 					<div>
-						<p>
+						<p className="font-bold text-xl mb-2">
 							Obecna lekcja
 						</p>
 						<p>

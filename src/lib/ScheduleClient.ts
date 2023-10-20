@@ -92,12 +92,8 @@ export class ScheduleClient {
 			hours[index as unknown as number].timeFrom = normalizeTime(hours[index as unknown as number].timeFrom)
 			hours[index as unknown as number].timeTo = normalizeTime(hours[index as unknown as number].timeTo)
 		})
-		
-		console.log(hours);
-		
-
+	
 		const day = schedule[weekDay - 1];
-		console.log(schedule);
 		
 		return this.transformSchedule(day, hours);
 	}
@@ -110,13 +106,17 @@ export class ScheduleClient {
 	}
 
 	async getLessonHint(roomId: string): Promise<LessonHint> {
-		let todaysLessons = await this.getRoomDaySchedule(roomId, new Date().getDay())
+		let todaysLessons = await this.getRoomDaySchedule(roomId, 1)
+		console.log(todaysLessons);
+		
+		// new Date().getDay()
 		if (!todaysLessons) {
 			return {
 				message: "no_lessons_today"
 			}
 		} else {
 			todaysLessons = todaysLessons?.filter((lesson: TableLesson) => lesson.subject)
+			console.log(todaysLessons);
 			
 			if (!todaysLessons) {
 				return {
@@ -124,11 +124,9 @@ export class ScheduleClient {
 				}
 			}
 
-			const nowTime = `${(new Date().getHours() < 10 ? '0' : '') + new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
-			
+			// const nowTime = `${(new Date().getHours() < 10 ? '0' : '') + new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
+			const nowTime = "08:30"
 			if (todaysLessons.length === 1) {
-				
-				
 				if (nowTime < todaysLessons[0].timeFrom) {
 					return {
 						message: "next_lesson",
@@ -156,7 +154,16 @@ export class ScheduleClient {
 				}
 			} else {
 				for (let i = 0; i < todaysLessons.length; i++) {
-					if (i === todaysLessons.length - 1) {
+					if (nowTime < todaysLessons[0].timeFrom) {
+						return {
+							message: "next_lesson",
+							nextLesson: {
+								teacher: todaysLessons[0].teacherId as string,
+								timeFrom: todaysLessons[0].timeFrom,
+								timeTo: todaysLessons[0].timeTo
+							}
+						}
+					} else if (i === todaysLessons.length - 1) {
 						if (nowTime > todaysLessons[i].timeTo) {
 							return {
 								message: "no_more_lessons_today",
@@ -164,7 +171,7 @@ export class ScheduleClient {
 						}
 					} else {
 						if (nowTime > todaysLessons[i].timeFrom && nowTime < todaysLessons[i + 1].timeTo) {
-							if (nowTime > todaysLessons[i].timeTo && nowTime < todaysLessons[i + 1].timeFrom ) {
+							if (nowTime > todaysLessons[i].timeTo && nowTime < todaysLessons[i + 1].timeFrom) {
 								return {
 									message: "next_lesson",
 									nextLesson: {
@@ -193,11 +200,10 @@ export class ScheduleClient {
 					}
 				}
 			}
-			
-			const res: LessonHint = {
-				message: "no_lessons_today"
-			}
-			return res;
+		}
+
+		return {
+			message: "no_lessons_today"
 		}
 	}
 }
