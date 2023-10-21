@@ -1,4 +1,4 @@
-import { Room } from "../types/models";
+import { LessonHint, Room } from "../types/models";
 import axios from "axios";
 import {
 	TimetableList,
@@ -36,7 +36,7 @@ export class ScheduleClient {
 		);
 
 		const table = new TimetableList(html);
-
+		
 		//* Get data about rooms from school schedule and transform it
 		const rooms = table.getList().rooms?.map((room) => {
 			return {
@@ -71,6 +71,11 @@ export class ScheduleClient {
 	}
 
 	async getRoomDaySchedule(id: string, weekDay: number) {
+
+		function normalizeTime(timeString: string) {
+			return `${(Number(timeString.split(":")[0]) < 10 ? '0' : '') + timeString.split(":")[0]}:${timeString.split(":")[1]}`
+		}
+
 		if (weekDay === 6 || weekDay === 7) {
 			return null;
 		}
@@ -83,8 +88,13 @@ export class ScheduleClient {
 		const schedule = table.getDays();
 		const hours = table.getHours();
 
-		const day = schedule[weekDay];
-
+		Object.keys(hours).forEach((index: string) => {
+			hours[index as unknown as number].timeFrom = normalizeTime(hours[index as unknown as number].timeFrom)
+			hours[index as unknown as number].timeTo = normalizeTime(hours[index as unknown as number].timeTo)
+		})
+	
+		const day = schedule[weekDay - 1];
+		
 		return this.transformSchedule(day, hours);
 	}
 
@@ -93,6 +103,106 @@ export class ScheduleClient {
 		const weekDay = date.getDay();
 
 		return await this.getRoomDaySchedule(id, weekDay);
+	}
+
+	async getLessonHint(roomId: string): Promise<LessonHint> {
+		let todaysLessons = await this.getRoomDaySchedule(roomId, new Date().getDay())
+		// let todaysLessons = await this.getRoomDaySchedule(roomId, 2) to test
+		
+		if (!todaysLessons) {
+			return {
+				message: "no_lessons_today"
+			}
+		} else {
+			todaysLessons = todaysLessons?.filter((lesson: TableLesson) => lesson.subject)
+			
+			if (!todaysLessons) {
+				return {
+					message: "no_lessons_today"
+				}
+			}
+
+			const nowTime = `${(new Date().getHours() < 10 ? '0' : '') + new Date().getHours()}:${(new Date().getMinutes() < 10 ? '0' : '') + new Date().getMinutes()}`
+			// const nowTime = "08:30" to test
+			if (todaysLessons.length === 1) {
+				if (nowTime < todaysLessons[0].timeFrom) {
+					return {
+						message: "next_lesson",
+						nextLesson: {
+							teacher: todaysLessons[0].teacherId as string,
+							timeFrom: todaysLessons[0].timeFrom,
+							timeTo: todaysLessons[0].timeTo
+						}
+					}
+				}
+				if (nowTime > todaysLessons[0].timeFrom && nowTime < todaysLessons[0].timeTo) {
+					return {
+						message: "current_lesson",
+						currentLesson: {
+							teacher: todaysLessons[0].teacherId as string,
+							timeFrom: todaysLessons[0].timeFrom,
+							timeTo: todaysLessons[0].timeTo
+						}
+					}
+				}
+				if (nowTime > todaysLessons[0].timeTo) {
+					return {
+						message: "no_more_lessons_today",
+					}
+				}
+			} else {
+				for (let i = 0; i < todaysLessons.length; i++) {
+					if (nowTime < todaysLessons[0].timeFrom) {
+						return {
+							message: "next_lesson",
+							nextLesson: {
+								teacher: todaysLessons[0].teacherId as string,
+								timeFrom: todaysLessons[0].timeFrom,
+								timeTo: todaysLessons[0].timeTo
+							}
+						}
+					} else if (i === todaysLessons.length - 1) {
+						if (nowTime > todaysLessons[i].timeTo) {
+							return {
+								message: "no_more_lessons_today",
+							}
+						}
+					} else {
+						if (nowTime > todaysLessons[i].timeFrom && nowTime < todaysLessons[i + 1].timeTo) {
+							if (nowTime > todaysLessons[i].timeTo && nowTime < todaysLessons[i + 1].timeFrom) {
+								return {
+									message: "next_lesson",
+									nextLesson: {
+										teacher: todaysLessons[i + 1].teacherId as string,
+										timeFrom: todaysLessons[i + 1].timeFrom,
+										timeTo: todaysLessons[i + 1].timeTo
+									}
+								}
+							} 
+							else {
+								return {
+									message: "current_next_lesson",
+									currentLesson : {
+										teacher: todaysLessons[i].teacherId as string,
+										timeFrom: todaysLessons[i].timeFrom,
+										timeTo: todaysLessons[i].timeTo
+									},
+									nextLesson: {
+										teacher: todaysLessons[i + 1].teacherId as string,
+										timeFrom: todaysLessons[i + 1].timeFrom,
+										timeTo: todaysLessons[i + 1].timeTo
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return {
+			message: "no_lessons_today"
+		}
 	}
 }
 

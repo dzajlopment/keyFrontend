@@ -13,3 +13,17 @@ export type Room = {
 	id: string;
 	name: string;
 };
+
+export type LessonHint = {
+	message: string;
+	currentLesson?: {
+		teacher: string,
+		timeFrom: string,
+		timeTo: string
+	};
+	nextLesson?: {
+		teacher: string,
+		timeFrom: string,
+		timeTo: string
+	};
+}
