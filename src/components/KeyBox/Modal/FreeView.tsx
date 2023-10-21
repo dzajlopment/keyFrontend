@@ -12,7 +12,6 @@ type Props = {
 
 const FreeView = ({ keyName }: Props) => {
 	const { teachers } = useTeachers();
-
 	const [value, setValue] = useState<Teacher>({
 		id: 0,
 		name: "",

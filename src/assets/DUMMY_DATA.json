@@ -1,7 +1,7 @@
 {
 	"keys": [
 		{ "name": "001", "floor": 0, "owner": "Damian Stelmach" },
-		{ "name": "02", "floor": 0, "owner": "Grzegorz Gadaj" },
+		{ "name": "02", "floor": 0, "owner": null },
 		{ "name": "114", "floor": 1, "owner": "Andrzej Konieczny" },
 		{ "name": "102", "floor": 1, "owner": null },
 		{ "name": "203", "floor": 2, "owner": null },
