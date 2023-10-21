@@ -24,7 +24,7 @@ export class ScheduleClient {
 	}
 
 	private async getData(url: string) {
-		const corsUrl = "https://cors-anywhere.herokuapp.com/";
+		const corsUrl = "https://dzajcors.shuttleapp.rs/";
 		const fullUrl = corsUrl + url;
 		const html = await axios.get(fullUrl).then((response) => response.data);
 		return html;
