@@ -1,8 +1,10 @@
 import { ReduxState } from "../store";
 import { useSelector } from "react-redux";
 
+const selectWS = (state: ReduxState) => state.ws;
+
 const useWS = () => {
-	const { ws } = useSelector((state) => state as ReduxState);
+	const ws = useSelector(selectWS);
 
 	const send = (data: unknown) => {
 		if (!ws) {

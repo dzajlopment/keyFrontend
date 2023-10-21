@@ -3,8 +3,10 @@ import { type ReduxState } from "../store";
 import { Key } from "../types/models";
 import { set, borrow, returnKey as retKey } from "../store/slices/keySlice";
 
+const selectKeys = (state: ReduxState) => state.keys;
+
 const useKeys = () => {
-	const { keys } = useSelector((state) => state as ReduxState);
+	const keys = useSelector(selectKeys);
 
 	const dispatch = useDispatch();
 
